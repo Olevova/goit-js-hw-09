@@ -13,5 +13,5 @@ function getNewColor() {
     
 }
 
-startBtnEl.addEventListener('click', () => {return changeColorId = setInterval(getNewColor, 1000 )})
-stopBtnEl.addEventListener('click', () => {return clearInterval(changeColorId)})
+startBtnEl.addEventListener('click', () => {return changeColorId = setInterval(getNewColor, 1000)})
+stopBtnEl.addEventListener('click', () => {console.log(1); return clearInterval(changeColorId)})
