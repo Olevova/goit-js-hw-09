@@ -12,6 +12,7 @@ function getNewColor() {
     return  bodyEl.style.backgroundColor = color;
     
 }
+let changeColorId = null
 
 startBtnEl.addEventListener('click', () => {return changeColorId = setInterval(getNewColor, 1000)})
-stopBtnEl.addEventListener('click', () => {console.log(1); return clearInterval(changeColorId)})
+stopBtnEl.addEventListener('click', () => {console.log(1, changeColorId); return clearInterval(changeColorId)})
