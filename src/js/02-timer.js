@@ -1,6 +1,6 @@
 import flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.min.css';
-
+let dateEnd = null
 
 const inputEl = document.querySelector("#datetime-picker");
 const options = {
@@ -9,17 +9,18 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
+    if(selectedDates[0] < Date.now()){
+      alert("Please choose right date")
+      return
+    }
+    dateEnd = selectedDates[0];
+    console.log(Date.now(dateEnd));
   },
 };
 flatpickr(inputEl, options);
 
 // час від якого потрібно вести відлік
-console.log(Date.now(inputEl.value));
-// const timerEl = document.querySelectorAll('.value');
-
-// console.log(timerEl);
-// const L = [];
-// timerEl.forEach((i) => L.push(i.dataset))
-
-// L.map((i) => console.log(i))    
+const timeDays = document.querySelector('.value[data-days]');
+const timeHours = document.querySelector('.value[data-hours]');
+const timeMinutes = document.querySelector('.value[data-minutes]');
+const timeSeconds = document.querySelector('.value[data-seconds]');
