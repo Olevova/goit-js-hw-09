@@ -7,6 +7,7 @@ function getRandomHexColor() {
 }
 
 function getNewColor() {
+    startBtnEl.setAttribute("disabled", true);
     const color = getRandomHexColor();
     console.log(color);
     return  bodyEl.style.backgroundColor = color;
@@ -15,4 +16,4 @@ function getNewColor() {
 let changeColorId = null
 
 startBtnEl.addEventListener('click', () => {return changeColorId = setInterval(getNewColor, 1000)})
-stopBtnEl.addEventListener('click', () => {return clearInterval(changeColorId)})
+stopBtnEl.addEventListener('click', () => { startBtnEl.removeAttribute("disabled"); return clearInterval(changeColorId)})
