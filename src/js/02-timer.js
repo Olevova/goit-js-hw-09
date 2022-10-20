@@ -18,8 +18,6 @@ function addLeadingZero(value){
   return value.toString().padStart(2, "0")
 }
 
-console.log("125666");
-console.log(addLeadingZero("a"), 1255555);
 
 btnElem.setAttribute("disabled", true);
 const options = {
@@ -37,6 +35,7 @@ const options = {
     console.log(Date.now(dateEnd));
   },
 };
+
 flatpickr(inputEl, options);
 
 // час від якого потрібно вести відлік
