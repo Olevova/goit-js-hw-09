@@ -2,6 +2,7 @@ import flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
+// задаємо елементи та змінні
 let dateEnd = null;
 let timeLeft = null;
 
@@ -12,6 +13,14 @@ const timeMinutes = document.querySelector('.value[data-minutes]');
 const timeSeconds = document.querySelector('.value[data-seconds]');
 const btnElem = document.querySelector('button');
 
+
+function addLeadingZero(value){
+  return value.toString().padStart(2, "0")
+}
+
+console.log("125666");
+console.log(addLeadingZero("a"), 1255555);
+
 btnElem.setAttribute("disabled", true);
 const options = {
   enableTime: true,
@@ -20,7 +29,7 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if(selectedDates[0] < Date.now()){
-      Notiflix.Notify.failure("Please choose right date")
+      Notiflix.Notify.failure("Please choose a date in a future")
       return
     }
     btnElem.removeAttribute("disabled");
@@ -32,16 +41,17 @@ flatpickr(inputEl, options);
 
 // час від якого потрібно вести відлік
 
-btnElem.addEventListener("click", SomeNew)
+btnElem.addEventListener("click", SomeNew);
+
 function SomeNew() {
     setInterval(() => {
     timeLeft = dateEnd - Date.now();
     // console.log(timeLeft);
     const { seconds, minutes, hours, days } = convertMs(timeLeft);
-    timeSeconds.textContent = seconds;
-      timeMinutes.textContent = minutes;
-      timeHours.textContent = hours;
-      timeDays.textContent = days;
+      timeSeconds.textContent = addLeadingZero(seconds);
+      timeMinutes.textContent = addLeadingZero(minutes);
+      timeHours.textContent = addLeadingZero(hours);
+      timeDays.textContent = addLeadingZero(days);
   }, 1000);
   
 
@@ -66,5 +76,6 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
+
 
 // console.log(convertMs(timeLeft)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
