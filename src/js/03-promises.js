@@ -15,7 +15,7 @@ refs.btnEl.addEventListener("click", (event) => {
   const firstDelay = Number(refs.delayEl.value);
   let delay = firstDelay;
   for (let position = 0; position < amount; position += 1) {
-    createPromise(position, delay).then(({ position, delay }) => { console.log(resolve) }).catch(({ position, delay }) => { console.log(reject) });
+    createPromise(position, delay).then(resolve =>  console.log(resolve)).catch(reject => console.log(reject));
     delay += Number(refs.stepDelayEl.value);
   }
 })
