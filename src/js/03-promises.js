@@ -15,7 +15,7 @@ refs.btnEl.addEventListener("click", (event) => {
   const firstDelay = Number(refs.delayEl.value);
   let delay = firstDelay;
   for (let position = 0; position < amount; position += 1) {
-    createPromise(position, delay).then(r => console.log(r)).catch(e => console.log(e));
+    createPromise(position, delay).then(({ position, delay }) => { console.log(resolve) }).catch(({ position, delay }) => { console.log(reject) });
     delay += Number(refs.stepDelayEl.value);
   }
 })
@@ -25,7 +25,7 @@ refs.btnEl.addEventListener("click", (event) => {
 // створюємо функція , яка в собі створює проміс
   function createPromise(position, delay) {
     const shouldResolve = Math.random() > 0.3;
-    return promise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
         if (shouldResolve) {
           resolve(Notiflix.Notify.success(`✅ Fulfilled promise ${position + 1} in ${delay}ms`));
@@ -34,5 +34,7 @@ refs.btnEl.addEventListener("click", (event) => {
           reject(Notiflix.Notify.failure(`❌ Rejected promise ${position + 1} in ${delay}ms`));
         }
       }, delay);
+      
     });
+    return promise
   };
